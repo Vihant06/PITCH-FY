@@ -3,7 +3,6 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Author, Startup } from "@/sanity/schemaTypes";
 // import { Skeleton } from "@/components/ui/skeleton";
 
 type Author = {
@@ -67,10 +66,15 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src={author?.image!}
-            alt={author?.name!}
+            src={
+              author?.image && author.image.trim() !== ""
+                ? author.image
+                : "/logo.png"
+            }
+            alt={author?.name || "avatar"}
             width={40}
             height={40}
+            style={{ width: 40, height: 40 }}
             className="rounded-full ml-2"
           />
         </Link>
@@ -81,9 +85,10 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
           {description}
         </p>
         <img
-          src={image}
+          src={image && image.trim() !== "" ? image : "/logo.png"}
           alt="cover"
           className="w-full h-[150px] object-cover rounded-[10px]"
+          style={{ width: "100%", height: "auto", objectFit: "cover" }}
         />
       </Link>
 

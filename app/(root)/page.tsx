@@ -15,7 +15,7 @@ export default async function Home({
   const session = await auth();
 
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
-  console.log(JSON.stringify(posts, null, 2));
+  // console.log(JSON.stringify(posts, null, 2));
   return (
     <>
       <section className="w-full bg-pink-500 min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6">
@@ -37,7 +37,7 @@ export default async function Home({
           {query ? `Search results for "${query}"` : "All Startups"}
         </p>
 
-        <ul className="mt-7  grid md:grid-cols-3 sm:grid-cols-2 gap-5">
+        <ul className="mt-7 grid md:grid-cols-3 sm:grid-cols-2 gap-5">
           {posts?.length > 0 ? (
             posts.map((post: StartupTypeCard) => (
               <StartupCard key={post?._id} post={post} />

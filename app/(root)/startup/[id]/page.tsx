@@ -27,7 +27,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   ]);
   const editorPosts = playlist?.select ?? [];
 
-  if (!post) return notFound();
+  if (!post) return <div>Startup not found.</div>;
 
   const parsedContent = md.render(post?.pitch || "");
 
@@ -49,7 +49,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       <section className="px-6 py-10 max-w-7xl mx-auto;">
         <div className="max-w-4xl w-full mx-auto flex justify-center">
           <img
-            src={post.image}
+            src={post.image && post.image.trim() !== "" ? post.image : "/logo.png"}
             alt="thumbnail"
             className="w-full h-auto rounded-xl object-contain"
           />
@@ -58,11 +58,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
             <Link
-              href={`/user/${post.author?._id}`}
+              href={`/user/${post.author?._id ?? ""}`}
               className="flex gap-2 items-center mb-3"
             >
               <Image
-                src={post.author.image}
+                src={post.author?.image && post.author.image.trim() !== "" ? post.author.image : "/logo.png"}
                 alt="avatar"
                 width={64}
                 height={64}
@@ -71,10 +71,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
               <div>
                 <p className="font-medium text-[20px] text-black">
-                  {post.author.name}
+                  {post.author?.name ?? "Unknown"}
                 </p>
                 <p className="font-medium text-[16px] text-black !text-black-300">
-                  @{post.author.username}
+                  @{post.author?.username ?? "unknown"}
                 </p>
               </div>
             </Link>

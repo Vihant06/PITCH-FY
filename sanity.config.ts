@@ -27,4 +27,5 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     markdownSchema(),
   ],
+  browserToken: "your_viewer_token_here"
 });
