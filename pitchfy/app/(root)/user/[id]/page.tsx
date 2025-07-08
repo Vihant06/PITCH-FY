@@ -7,8 +7,8 @@ import UserStartups from "@/components/UserStartups";
 import { Suspense } from "react";
 import { StartupCardSkeleton } from "@/components/StartupCard";
 
-const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const id = (await params).id;
+const Page = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
   const session = await auth();
 
   const user = await client.fetch(AUTHOR_BY_ID_QUERY, { id });

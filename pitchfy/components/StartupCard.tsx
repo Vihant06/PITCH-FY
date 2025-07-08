@@ -3,7 +3,7 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-// import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Author = {
   _id: string;
@@ -40,7 +40,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   } = post;
 
   return (
-    <li className="bg-white border-[5px] border-black rounded-[22px] px-5 py-4 shadow-md hover:border-red-400 hover:bg-red-100 transition-all duration-300 group">
+    <li className="bg-white border-[5px] border-black rounded-[22px] px-5 py-4 shadow-md hover:border-red-400 hover:bg-red-100 transition-all duration-300 group flex flex-col h-full">
       <div className="flex justify-between items-center">
         <p className="text-sm bg-red-100 text-black px-3 py-1 rounded-full group-hover:bg-white transition">
           {formatDate(_createdAt)}
@@ -107,14 +107,14 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   );
 };
 
-// export const StartupCardSkeleton = () => (
-//   <>
-//     {[0, 1, 2, 3, 4].map((index: number) => (
-//       <li key={cn("skeleton", index)}>
-//         <Skeleton className="w-full h-96 rounded-[22px] bg-zinc-400;" />
-//       </li>
-//     ))}
-//   </>
-// );
+export const StartupCardSkeleton = () => (
+  <>
+    {[0, 1, 2, 3, 4].map((index: number) => (
+      <li key={cn("skeleton", index)}>
+        <Skeleton className="w-full h-96 rounded-[22px] bg-zinc-400;" />
+      </li>
+    ))}
+  </>
+);
 
 export default StartupCard;

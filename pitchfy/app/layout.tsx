@@ -67,6 +67,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/*
+        NOTE: If you see a hydration mismatch involving 'vsc-initialized' in the <body> className,
+        it is caused by a browser extension (such as VS Code Live Share or Copilot) injecting a class.
+        This does NOT affect production and is safe to ignore in development.
+        See: https://react.dev/link/hydration-mismatch
+      */}
       <body className={workSans.variable}>
         {children}
         {/* <Toaster /> */}
